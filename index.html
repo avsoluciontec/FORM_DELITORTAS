@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DeliTortas & Galletas Y.A. - Registro de Pedidos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-brand: #F8C062;
+            --brand-dark: #3A1D11;
+            --brand-accent: #E88D23;
+            --brand-pink: #E86B8B;
+            --card-bg: #FFFDF9;
+            --text-main: #2C1810;
+            --border-color: #E2CFB4;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-brand);
+            color: var(--text-main);
+            margin: 0;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .mobile-card {
+            background-color: var(--card-bg);
+            border: 3px solid var(--brand-dark);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(58, 29, 17, 0.25);
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .brand-header {
+            text-align: center;
+            border-bottom: 2px dashed var(--brand-dark);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .brand-title {
+            font-family: 'Caveat', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .brand-slogan {
+            font-family: 'Caveat', cursive;
+            font-size: 18px;
+            color: #7A421D;
+            margin: 5px 0 0 0;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--brand-dark);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            height: 48px;
+            padding: 0 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            background-color: #FFFFFF;
+            color: var(--text-main);
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--brand-accent);
+        }
+
+        .product-box {
+            background: #FFF8EE;
+            border: 2px dashed var(--border-color);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 18px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-qty {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 2px solid var(--brand-dark);
+            background: #FFFFFF;
+            color: var(--brand-dark);
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .qty-display {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            height: 44px;
+            line-height: 40px;
+            background: #FFF;
+        }
+
+        .btn-add-item {
+            width: 100%;
+            height: 44px;
+            background-color: var(--brand-dark);
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .order-summary {
+            background-color: #FFFFFF;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 18px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #E2CFB4;
+            font-size: 14px;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-remove {
+            background: transparent;
+            border: none;
+            color: #dc3545;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            height: 52px;
+            background-color: var(--brand-accent);
+            color: #FFFFFF;
+            border: 2px solid var(--brand-dark);
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 var(--brand-dark);
+        }
+
+        .btn-submit:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--brand-dark);
+        }
+
+        #mensaje {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-card">
+        <div class="brand-header">
+            <h1 class="brand-title">DeliTortas & Galletas Y.A.</h1>
+            <p class="brand-slogan">...Un emprendimiento con amor y buen sabor...</p>
+        </div>
+
+        <form id="orderForm">
+            <!-- A cargo de -->
+            <div class="form-group">
+                <label for="aCargoDe">A cargo de:</label>
+                <select id="aCargoDe" required>
+                    <option value="" disabled selected>Selecciona encargado</option>
+                    <option value="Aderson">Aderson</option>
+                    <option value="Yanary">Yanary</option>
+                </select>
+            </div>
+
+            <!-- Pedido por -->
+            <div class="form-group">
+                <label for="pedidoPor">Pedido por:</label>
+                <input type="text" id="pedidoPor" placeholder="Nombre de la persona / cliente" required>
+            </div>
+
+            <!-- Sección de Búsqueda y Selección de Producto -->
+            <div class="product-box">
+                <label for="inputProducto">Buscar Producto (escribe las iniciales):</label>
+                <input type="text" id="inputProducto" list="listaProductos" placeholder="Ej. TOR, BRO, ACH..." autocomplete="off">
+                
+                <!-- Lista predictiva de productos -->
+                <datalist id="listaProductos">
+                    <option value="ACHIRAS X25">
+                    <option value="ALMOJABANAS X10">
+                    <option value="AREPA BOYACENSE X10">
+                    <option value="BRAZO DE REINA X11">
+                    <option value="BRAZO DE REINA X14">
+                    <option value="BRAZO DECORADO X8">
+                    <option value="BROWNIE X14">
+                    <option value="BROWNIE X9">
+                    <option value="CALENTANOS X40">
+                    <option value="CHEESECAKE CAJA X12">
+                    <option value="CHEESECAKE DECORADO X12">
+                    <option value="CHOCOBROWNIE ESCARCHA X16">
+                    <option value="CHOCOBROWNIE X16">
+                    <option value="CHOMELOS X60">
+                    <option value="COCADA X25">
+                    <option value="COCADA X45">
+                    <option value="CORAZONES CHOCO X25">
+                    <option value="CORAZONES X60">
+                    <option value="CUCAS X10">
+                    <option value="DONUTS X10">
+                    <option value="FLAUTAS X15">
+                    <option value="GALLETA COCO X45">
+                    <option value="GALLETA POLVOROSA X60">
+                    <option value="LIBERALES X30">
+                    <option value="LONCHERITOS DE QUESO X10">
+                    <option value="MANTECADA EMP. INDIVIDUAL X15">
+                    <option value="MERENGUES X60">
+                    <option value="MILHOJA X8">
+                    <option value="PANDEROS X25">
+                    <option value="PANDEROS X35">
+                    <option value="PASABOCAS X40">
+                    <option value="PASTEL DE POLLO X10 TRIANGULAR">
+                    <option value="PIE DE PIÑA X12">
+                    <option value="REPOLLITAS X40">
+                    <option value="RIZADAS X60">
+                    <option value="ROLLIS DE AREQUIPE">
+                    <option value="TAJADO AMAPOLA X10">
+                    <option value="TAJADO CHOCOLATE X10">
+                    <option value="TAJADO COMBINADO X10">
+                    <option value="TORTA AMAPOLA X9">
+                    <option value="TORTA CHOCOLATE X16">
+                    <option value="TORTA COMBINADA X16">
+                    <option value="TORTA DE SABORES X12">
+                    <option value="TORTA DECORADA X16">
+                    <option value="TORTA DIANA ESPECIAL X8">
+                    <option value="TORTA MINI DOMO X6">
+                    <option value="TORTA ZANAHORIA X9">
+                </datalist>
+
+                <!-- Control de Cantidad -->
+                <div class="quantity-control">
+                    <button type="button" class="btn-qty" id="btnLess">−</button>
+                    <div class="qty-display" id="qtyVal">1</div>
+                    <button type="button" class="btn-qty" id="btnMore">＋</button>
+                </div>
+
+                <button type="button" class="btn-add-item" id="btnAddProduct">＋ Agregar Producto al Pedido</button>
+            </div>
+
+            <!-- Resumen del Pedido -->
+            <label>Productos Agregados:</label>
+            <div class="order-summary" id="summaryList">
+                <p style="text-align: center; color: #888; font-size: 13px; margin: 5px 0;" id="emptyMsg">No has agregado productos aún.</p>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Pedido a Sheets</button>
+        </form>
+
+        <div id="mensaje"></div>
+    </div>
+
+    <script>
+        // PEGA AQUÍ LA URL DE TU SCRIPT DE GOOGLE APPS SCRIPT
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqffDfiLO3fRppuVL_TYQ8xXrxInHmy1vdmgvJuqRPQgDT7As1ugh8peViprUQJZnr1A/exec';
+
+        let currentQty = 1;
+        let cart = [];
+
+        const qtyVal = document.getElementById('qtyVal');
+        const btnLess = document.getElementById('btnLess');
+        const btnMore = document.getElementById('btnMore');
+        const btnAddProduct = document.getElementById('btnAddProduct');
+        const inputProducto = document.getElementById('inputProducto');
+        const summaryList = document.getElementById('summaryList');
+        const emptyMsg = document.getElementById('emptyMsg');
+
+        // Control de cantidad + / -
+        btnLess.addEventListener('click', () => {
+            if (currentQty > 1) {
+                currentQty--;
+                qtyVal.innerText = currentQty;
+            }
+        });
+
+        btnMore.addEventListener('click', () => {
+            currentQty++;
+            qtyVal.innerText = currentQty;
+        });
+
+        // Agregar producto buscando en el Datalist
+        btnAddProduct.addEventListener('click', () => {
+            const prod = inputProducto.value.trim();
+            if (!prod) {
+                alert('Por favor escribe o selecciona un producto.');
+                return;
+            }
+
+            cart.push({ producto: prod, cantidad: currentQty });
+            
+            // Reiniciar caja de búsqueda y contador
+            inputProducto.value = '';
+            currentQty = 1;
+            qtyVal.innerText = currentQty;
+
+            renderCart();
+        });
+
+        // Renderizar carrito
+        function renderCart() {
+            summaryList.innerHTML = '';
+            if (cart.length === 0) {
+                summaryList.appendChild(emptyMsg);
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'summary-item';
+                div.innerHTML = `
+                    <span><strong>${item.cantidad}x</strong> ${item.producto}</span>
+                    <button type="button" class="btn-remove" onclick="removeProduct(${index})">✕</button>
+                `;
+                summaryList.appendChild(div);
+            });
+        }
+
+        // Eliminar ítem
+        function removeProduct(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        // Envío hacia Google Sheets
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (cart.length === 0) {
+                alert('Debes agregar al menos un producto a la lista antes de enviar.');
+                return;
+            }
+
+            const mensajeDiv = document.getElementById('mensaje');
+            mensajeDiv.style.color = '#3A1D11';
+            mensajeDiv.innerText = 'Enviando pedido...';
+
+            const productosTexto = cart.map(item => `${item.producto} (${item.cantidad})`).join(' - ');
+            const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0);
+
+            const payload = {
+                aCargoDe: document.getElementById('aCargoDe').value,
+                pedidoPor: document.getElementById('pedidoPor').value,
+                productosTexto: productosTexto,
+                totalItems: totalItems
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                mensajeDiv.style.color = '#28a745';
+                mensajeDiv.innerText = '¡Pedido registrado exitosamente!';
+                document.getElementById('orderForm').reset();
+                cart = [];
+                renderCart();
+            })
+            .catch(error => {
+                mensajeDiv.style.color = '#dc3545';
+                mensajeDiv.innerText = 'Ocurrió un error al enviar el pedido.';
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>
